@@ -3,6 +3,7 @@ Bam
 
 A simple html5 game to demonstrate p2p dataChannel API using http://rtc.io
 
+You can play it now at http://garrows.com/bam
 
 Build
 -----
