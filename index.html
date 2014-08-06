@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>Bam</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        input {
+            width: 80%;
+        }
+    </style>
+    <meta content='True' name='HandheldFriendly' />
+    <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+    <script src="build.js"></script>
+</head>
+<body ng-app="app" ng-controller="GameCtrl">
+    <div ng-hide="connected">
+        <h1>Waiting for friend...</h1>
+        <p>Maybe send them your unique link.</p>
+        <p>Troubleshooting: Refresh the page a few times. Both people use chrome.</p>
+    </div>
+    
+    <div ng-show="connected">
+    
+        <div ng-hide="state == 'win' || state == 'loss'">
+            <h1>Press space or touch the screen as fast as you can to push the slider to the right.</h1>
+            <p>They will be pushing back.</p>
+        </div>
+        
+        <div ng-show="state == 'wait'">
+            <h1>Game starts in {{countdown}} seconds</h1>
+        </div>
+        
+        <div ng-show="state == 'play'">
+            <input type="range" name="points" min="0" ng-attr-max="max" ng-model="position" readonly>
+        </div>
+        
+        <div ng-show="state == 'loss'">
+            <h1>You lose!</h1>
+            <p>Hit refresh for a rematch.</p>
+        </div>
+        
+        <div ng-show="state == 'win'">
+            <h1>You win!</h1>
+            <p>Hit refresh for a rematch.</p>
+        </div>
+        
+    </div>
+    
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-5230966-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+</body>
+
+</html>

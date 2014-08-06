@@ -1,0 +1,23 @@
+{
+  "name": "Bam",
+  "version": "1.0.0",
+  "description": "A html5 game to demonstrate p2p dataChannel API",
+  "main": "index.js",
+  "repository" : { 
+      "type" : "git", 
+      "url" : "http://github.com/garrows/Bam.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+      "name": "Glen Arrowsmith",
+      "email": "glen.arrowsmith@gmail.com",
+      "url": "http://garrows.com/bam/"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "freeice": "^1.0.0",
+    "rtc-quickconnect": "^2.6.0"
+  }
+}
