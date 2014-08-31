@@ -31,10 +31,25 @@ angular.module('app', [])
       var increment = 2;
       reset();
 
-
       quickconnect('http://switchboard.rtc.io', opts)
         .createDataChannel('game')
+        .on('peer:connect', function(id, peerconnection, data) {
+          console.log('peer:connect')
+        })
+        .on('peer:couple', function(id, peerconnection, data, monitor) {
+          console.log('peer:couple')
+        })
+        .on('call:started', function(id, peerconnection, data) {
+          console.log('call:started')
+        })
+        .on('call:ended', function(id, peerconnection, data) {
+          console.log('call:ended')
+        })
+        .on('channel:opened', function(id, peerconnection, data) {
+          console.log('channel:opened')
+        })
         .on('channel:opened:game', function(id, dc) {
+          console.log('channel:opened:game', id)
 
           dc.addEventListener('message', function(evt) {
             console.log('peer ' + id + ' says: ' + evt.data);
@@ -60,10 +75,8 @@ angular.module('app', [])
             $scope.$apply();
           });
 
-          console.log('channel opened with peer: ' + id);
           $scope.connected = true;
           dc.send('Reset');
-
 
           var counter = setInterval(function() {
             $scope.countdown--;
@@ -89,11 +102,8 @@ angular.module('app', [])
           document.addEventListener("touchend", makeBam);
 
         })
-        .on('channel:closed:chat', function(id) {
-          $scope.connected = false;
-          reset();
-          $scope.$apply();
-          console.log('peer ' + id + ' has disconnected, channel closed');
+        .on('channel:closed:game', function(id) {
+          console.log('channel:closed:game', id);
         });
 
     }
